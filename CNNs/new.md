@@ -8,7 +8,7 @@ In order to tackle multi-label image classification task, we design a Convolutio
 
 **Overview methods of multi-label image classification task:** In recent years, it has been proved effective and efficient of deep convolutional neural network when refers to multi-label image classification task. In the early stage, the AlexNet etc. try to increasing data size and model depth to realize breakthroughs on performance. Then followed by VGG, providing small kernels ideas which is now still commonly used in CNNs. However, when the depths get deeper, the vanishing gradient problem has become significant. ResNet (Residual Network) , which was proposed by He Kaiming in 2015, demonstrating the residual connections could alleviate the degradation problem of deep networks. This has profound impact on later's neural network architecture and become the foundation of current convolutional neural network. This could be explained that by adding shortcut paths of identity mapping between network layers, ResNet can train extremely deep networks such as 50 or 101 layers without serious performance degradation. The residual structure allows the gradient to pass some layers and propagate directly, greatly improving the training stability and accuracy of deep networks. Furthermore, the Inception series network proposed by Google, using different sizes of convolution kernels to extract multi-scale features in parallel inside the Inception module, which improves parameter utilization efficiency and performance. For example, InceptionV3 obtains information of different scales through parallel 1×1, 3×3, and 5×5 convolution branches while controlling computational costs. In 2016, Szegedy et al. proposed to merge Inception with ResNet to form the Inception-ResNet architecture. Inception-ResNet-v1 and v2 add residual connections to each Inception module based on Inception-v4. These advanced CNN architectures provide a powerful feature extraction foundation for multi-label classification.
 
-**Data augmentation**: Krizhevsky et al. introduced random cropping, horizontal flipping, and color perturbation to expand the training data in ImageNet classification. Generally, applying random but label-invariant transformations (such as rotation, translation, color shift) to existing images could amplify the distribution of training samples, making the model more adaptable to the test data. Therefore, in some cases, it could make up for the imbalanced data problem. 
+**Data augmentation**: Krizhevsky et al. introduced random cropping, horizontal flipping, and color perturbation to expand the training data in ImageNet classification. Generally, applying random but label-invariant transformations, such as rotation, translation, color shift to existing images could amplify the distribution of training samples, making the model more adaptable to the test data. Therefore, in some cases, it could make up for the imbalanced data problem. 
 
 **Imbalanced data processing**: In some pratical cases, some labels have far fewer samples than other labels. If trained directly without any processing, the model tends to predict the majority class with more samples, resulting in extremely low recall rate for the minority class. Oversampling minority class samples and undersampling majority class samples are widely used. On top of that, we could give higher weights on minority class and lower weights on majority class. Through these ways, we could make our model more reliable and stable. 
 
@@ -107,13 +107,47 @@ The model is trained for several epochs, each of which contains an iteration of 
 
 **Datasets and evaluation metrics**: 
 
+**Hyperparameters:**
+
+Epochs：20
+
+Optimizer：Adam (Learning rate = 0.001)
+
+Batch size：32
+
+Loss Function：Binary Cross Entropy (BCE Loss)
+
 **Overall Results**: 
+
+| 模型（Model）               | Micro-F1（%） |
+| --------------------------- | ------------- |
+| Baseline（无数据增强）      | 65.10%        |
+| 类别加权（无数据增强）      | 68.21%        |
+| Data Augmentation（本研究） | **74.45%**    |
+
+By introducing category weights and data augmentation strategies, the Micro-F1 index of the model is significantly improved. Among them, the model performance is slightly improved when only category weights are added, and the performance is significantly improved after further adding data augmentation strategies, with the Micro-F1 score reaching the highest 74.45%.
 
 ## Ablation Studies
 
+### （1）数据增强的效果分析（Effectiveness of Data Augmentation）
 
+The data augmentation strategy aims to increase sample diversity and reduce the risk of model overfitting by random rotation, flipping, color jittering, etc. Figure 1 shows the model performance (Baseline model) when the data augmentation strategy is not adopted, and Figure 2 shows the results of adding category weights but not performing data augmentation.
 
+从图1: baseline
 
+- The baseline model without data augmentation has generally low F1 scores in all categories, especially the categories with fewer samples (such as Class 14, Class 15, and Class 18), which perform the worst, with F1 even close to 0.
+
+从图2（类别加权，无数据增强）：
+
+- After introducing category weights, the F1 scores of minority categories are significantly improved, which shows that category weighting has alleviated the category imbalance problem to a certain extent, but the overall performance improvement is relatively limited.
+
+After adding data augmentation (Figure 3, i.e. the method in this paper), the overall Micro-F1 score of the model is greatly improved to 74.45%, significantly exceeding the 65.10% without augmentation and the 68.21% with weighting only. This significant performance improvement proves that the data augmentation strategy effectively improves the generalization ability and performance stability of the model.
+
+### （2）类别权重对少数类别的影响分析（Impact of Class Weights）
+
+When the class imbalance problem is prominent, the model tends to be biased towards the majority class samples. By giving a larger weight to the minority class in the loss function, the model can pay more attention to the minority class and improve its recall rate and F1-score performance.
+
+Specifically, the model without data enhancement but with weights introduced in Figure 2 has significantly improved F1 scores on minority classes such as Class 14, Class 15, and Class 18 compared to the Baseline (Figure 1). This result clearly shows that class weighting is a simple and effective method that can improve the performance deviation caused by class imbalance in a targeted manner.
 
 # 5. Conclusion and discussion
 
