@@ -12,6 +12,7 @@ import pathlib, urllib.request
 from torchvision.models import ResNet50_Weights
 import matplotlib.pyplot as plt
 
+# pytorch pandas pathlib pyplot 
 
 # ── 1. choose device once ────────────────────────────────────────────────
 device = (
