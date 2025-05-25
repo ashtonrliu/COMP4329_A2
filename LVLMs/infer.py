@@ -77,26 +77,4 @@ if __name__ == "__main__":
 
     # write out CSV (same as earlier)
     import pandas as pd
-    pd.DataFrame(pred_rows).to_csv("submission.csv", index=False)
-
-    # # model + transforms
-    # model, train_tfms, val_tfms = setup_training()
-
-    # # build ONE full dataset (no cache) then split 90/10
-    # full_ds = MultiLabelDataset(samples, transform=train_tfms, cache=False)
-    # val_len = int(0.10 * len(full_ds))
-    # train_len = len(full_ds) - val_len
-    # train_ds, val_ds = random_split(full_ds, [train_len, val_len],
-    #                                 generator=torch.Generator().manual_seed(42))
-
-    # # IMPORTANT: val set should use val transforms (no flip)
-    # val_ds = type(full_ds)([full_ds.records[i] for i in val_ds.indices],
-    #                        transform=val_tfms, cache=False)
-
-    # pin_mem = device.type == "cuda"
-    # train_loader = DataLoader(train_ds, batch_size=32, shuffle=True,
-    #                           num_workers=4, pin_memory=pin_mem)
-    # val_loader   = DataLoader(val_ds,   batch_size=32, shuffle=False,
-    #                           num_workers=4, pin_memory=pin_mem)
-
-    # run_training(model, train_loader, val_loader)
+    pd.DataFrame(pred_rows).to_csv("../submission.csv", index=False)
