@@ -1,4 +1,12 @@
 
+## 0 MODEL SIZE
+
+We ensemble two models for our classificaiton problem. They are found at:
+
+    resnet50/best_model.pth # 4.4 MB
+    Language Processing/model # 94.5 MB
+
+All other models included are part of exploration
 
 ## 1 Usage
 
@@ -42,17 +50,21 @@ This inference stage produces image_output.csv in the root directory. This conta
 
 Step 1. Navigate to Language Processing/processing.ipynb 
 
-Step 2. Run each code block. This will train, hyperparameter fine-tune an LSTM model. It will then run the model and run produce image_output.csv
+Step 2. Run each code block. This will train, hyperparameter fine-tune an LSTM model. This model is stored at Language Processing/model It will then run the model and run produce image_output.csv. The model is 4.4 MB
 
 #### 1.3 Producing the final output
 
-Step 1. Run combine.py to combine the image_output.csv and the captions_output.csv 
+Step 1. Navigate to the root directory and run:
+    
+    combine.py 
+    
+This will combine the captions_output.csv and image_output.csv to produce Predicted_labels.txt
 
 Step 2. View the final Predicted_labels.txt
 
 ## 2 Remaining code base
 The rest of the code base exists as experiments on our way to building the most accurate model.
 
-LVLMs 
+LVLMs contains exploration
 
-CNNs
+CNNs contains abalation studies, with other models. It was not used in the final result.
