@@ -3,8 +3,8 @@
 
 We ensemble two models for our classificaiton problem. They are found at:
 
-    resnet50/best_model.pth # 4.4 MB
-    Language Processing/model # 94.5 MB
+    resnet50/best_model.pth # 94.5 MB
+    Language Processing/model # 4.4 MB
 
 All other models included are part of exploration
 
