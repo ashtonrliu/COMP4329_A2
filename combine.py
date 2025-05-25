@@ -46,6 +46,6 @@ sub["Labels"] = sub["union"].apply(lambda L: " ".join(map(str, L)))
 
 # ---------- 5.  export ----------
 final_cols = sub[["ImageID", "Labels"]]
-final_cols.to_csv("aliu0521_bgri0140_hwen0469.csv", index=False)
+final_cols.to_csv("Predicted_labels.txt", index=False)
 
 print("Wrote final_submission.csv")
