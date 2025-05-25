@@ -5,7 +5,7 @@
 # Byte-compiled / optimized / DLL files
 __pycache__/
 __pycache__
-LVLMs/checkpoints/
+resnet50/checkpoints/
 *.py[cod]
 *$py.class
 

@@ -77,4 +77,4 @@ if __name__ == "__main__":
 
     # write out CSV (same as earlier)
     import pandas as pd
-    pd.DataFrame(pred_rows).to_csv("../submission.csv", index=False)
+    pd.DataFrame(pred_rows).to_csv("../image_output.csv", index=False)

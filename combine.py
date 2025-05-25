@@ -3,7 +3,7 @@ from pathlib import Path
 
 # ---------- 1.  read out.csv  ----------
 out_lists = []
-with Path("out.csv").open() as f:
+with Path("captions_output.csv").open() as f:
     for raw in f:
         line = raw.strip()
         if not line:                      # blank line  →  empty list
@@ -13,7 +13,7 @@ with Path("out.csv").open() as f:
             out_lists.append(nums)
 
 # ---------- 2.  read submission.csv  ----------
-sub = pd.read_csv("submission.csv")       # columns: ImageID, Labels
+sub = pd.read_csv("image_output.csv")       # columns: ImageID, Labels
 
 # ---------- 3.  turn the Labels column into lists ----------
 def to_int_list(cell) -> list[int]:

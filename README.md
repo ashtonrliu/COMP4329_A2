@@ -1,4 +1,4 @@
-#READ ME
+
 
 ### 1 Usage
 
@@ -22,11 +22,21 @@ Our code is split up into two sections for our final model. The finetuned resnet
 
 #### 1.2.1 Training the Resnet50 model
 
-Step 1. cd resnet50
+Step 1. 
+    
+    cd resnet50
 
-Step 2. python3 train.py
+Step 2. 
+    
+    python3 train.py
 
-This training will produce best_model.pth which is the first model used, it sits at 94.5 MB in size
+This training will produce best_model.pth which is the first model used, it sits at 94.5 MB in size. It ran for 1 hour and 27 minutes when trained
+
+Step 3.
+
+    python3 infer.py
+
+This inference stage produces image_output.csv in the root directory. This contains the labels produced by the model and the image id.
 
 #### 1.2.2 Training the LSTM
 
